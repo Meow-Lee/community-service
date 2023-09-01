@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+</head>
+<body>
+
+<!-- 헤더 -->
+<header>
+    <h1>게시판</h1>
+    <nav>
+        <a href="/">홈</a>
+        <a href="/board">게시판</a>
+        <a href="/member">회원</a>
+    </nav>
+</header>
+
+<!-- 로그인/회원가입 -->
+<section class="login-section">
+    <h2>로그인</h2>
+    <form action="/login" method="post">
+        <input type="text" name="username" placeholder="아이디">
+        <input type="password" name="password" placeholder="비밀번호">
+        <input type="submit" value="로그인">
+    </form>
+    <p>회원이 아니신가요? <a href="/member/join">회원가입</a></p>
+</section>
+
+<!-- 게시글 목록 -->
+<section class="board-list-section">
+    <h2>게시글 목록</h2>
+    <table class="board-list-table">
+        <thead>
+        <tr>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회수</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>제목 1</td>
+            <td>작성자 1</td>
+            <td>2023-07-20</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>제목 2</td>
+            <td>작성자 2</td>
+            <td>2023-07-21</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>제목 3</td>
+            <td>작성자 3</td>
+            <td>2023-07-22</td>
+            <td>30</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="board-list-pager">
+        <a href="#">이전</a>
+        <a href="#">다음</a>
+    </div>
+</section>
+
+<!-- 게시글 작성 -->
+<section class="board-write-section">
+    <h2>게시글 작성</h2>
+    <form action="/board/write" method="post">
+        <input type="text" name="title" placeholder="제목">
+        <input type="text" name="writer" placeholder="작성자">
+        <textarea name="content" placeholder="내용"></textarea>
+        <input type="submit" value="작성">
+    </form>
+</section>
+
+<!-- 게시글 상세 -->
+<section class="board-detail-section">
+    <h2>게시글 상세</h2>
+    <h3>제목: <span id="title"></span></h3>
+    <p>작성자: <span id="writer"></span></p>
+    <p>
