@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 
+import java.util.List;
+
 @Entity
 @Getter
 public class Member {
@@ -24,6 +26,12 @@ public class Member {
 
     @Column(nullable = false)
     private String address;
+
+    @OneToMany(mappedBy = "postMember")
+    private List<Post> postList;
+
+    @OneToMany(mappedBy = "commentMember")
+    private List<Comment> commentList;
 
 //    @Column(nullable = false)
 //    private String login_id;

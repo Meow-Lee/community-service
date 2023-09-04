@@ -26,6 +26,10 @@ public class Post {
     @Column(name = "UpdatedAt", nullable = false)
     private LocalDateTime post_updatedAt;
 
+    @ManyToOne
+    @JoinColumn(name = "User_id")
+    private Member postMember;
+
     @Builder
     public Post(String post_title, String post_content, LocalDateTime post_createdAt) {
         this.post_title = post_title;

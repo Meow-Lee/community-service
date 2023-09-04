@@ -26,6 +26,10 @@ public class Comment {
     @Column(name = "UpdatedAt", nullable = false)
     private LocalDateTime comment_updatedAt;
 
+    @ManyToOne
+    @JoinColumn(name = "User_id")
+    private Member commentMember;
+
     @Builder
     public Comment(String comment_title, String comment_content, LocalDateTime comment_createdAt) {
         this.comment_title = comment_title;
