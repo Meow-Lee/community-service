@@ -3,11 +3,13 @@ package com.example.community_service.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,9 +33,10 @@ public class Post {
     private Member postMember;
 
     @Builder
-    public Post(String post_title, String post_content, LocalDateTime post_createdAt) {
+    public Post(String post_title, String post_content, LocalDateTime post_createdAt, LocalDateTime post_updatedAt) {
         this.post_title = post_title;
         this.post_content = post_content;
         this.post_createdAt = post_createdAt;
+        this.post_updatedAt = post_updatedAt;
     }
 }

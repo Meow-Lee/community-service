@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,7 +8,7 @@
 <section class="board-list-section">
   <h2>게시글 목록</h2>
   <nav>
-    <a href="/home/board/write">글 작성</a>
+    <a href="/home/board/post">글 작성</a>
   </nav>
   <table class="board-list-table">
     <thead>
@@ -16,27 +16,15 @@
       <th>제목</th>
       <th>작성자</th>
       <th>작성일</th>
-      <th>조회수</th>
+      <th>수정일</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>제목 1</td>
-      <td>작성자 1</td>
-      <td>2023-07-20</td>
-      <td>10</td>
-    </tr>
-    <tr>
-      <td>제목 2</td>
-      <td>작성자 2</td>
-      <td>2023-07-21</td>
-      <td>20</td>
-    </tr>
-    <tr>
-      <td>제목 3</td>
-      <td>작성자 3</td>
-      <td>2023-07-22</td>
-      <td>30</td>
+    <tr th:each="post : ${postList}">
+      <td th:text="${post.post_title}"></td>
+      <td th:text="${post.postMember}"></td>
+      <td th:text="${post.post_createdAt}"></td>
+      <td th:text="${post.post_updatedAt}"></td>
     </tr>
     </tbody>
   </table>

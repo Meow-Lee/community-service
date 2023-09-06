@@ -7,7 +7,7 @@
 <body>
 <section class="board-write-section">
   <h2>게시글 작성</h2>
-  <form action="/home/board/write" method="post">
+  <form action="/home/board/post" method="post">
     <input type="text" name="title" th:value="${title}">
     <textarea name="content" th:value="${content}"></textarea>
     <button type="submit">등록</button>
