@@ -48,7 +48,7 @@ public class MainController {
      */
     @GetMapping("/board/post")
     public String write(Model model, PostDto postDto) {
-        model.addAttribute(postDto);
+        model.addAttribute("post", postDto);
         return "post";
     }
 

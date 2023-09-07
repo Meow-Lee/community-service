@@ -19,7 +19,7 @@ class MemberServiceTest {
     @Autowired
     private MemberRepository memberRepository;
 
-    @DisplayName("사용자 정보 저장 테스트")
+    @DisplayName("User Info Test")
     @Test
     public void test1() {
         Member member1 = Member.builder().name("Lee").age(15).email("lukei321@naver.com").address("하남").build();
