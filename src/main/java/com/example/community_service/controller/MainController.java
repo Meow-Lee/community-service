@@ -4,12 +4,10 @@ import com.example.community_service.domain.Post;
 import com.example.community_service.dto.PostDto;
 import com.example.community_service.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,9 +32,9 @@ public class MainController {
      * @return board
      */
     @GetMapping("/board")
-    public String board(Model model) {
-        List<Post> posts = postService.getPosts();
-        model.addAttribute("postList", posts);
+    public String board(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
+        Page<Post> paging = postService.getList(page);
+        model.addAttribute("postList", paging);
         return "board";
     }
 
