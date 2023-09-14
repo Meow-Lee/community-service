@@ -1,15 +1,13 @@
 package com.example.community_service.service;
 
-import com.example.community_service.domain.Member;
+import com.example.community_service.domain.User;
 import com.example.community_service.repository.MemberRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class MemberServiceTest {
@@ -22,11 +20,11 @@ class MemberServiceTest {
     @DisplayName("User Info Test")
     @Test
     public void test1() {
-        Member member1 = Member.builder().name("Lee").age(15).email("lukei321@naver.com").address("하남").build();
-        Member member2 = Member.builder().name("Lee").age(15).email("lukei321@naver.com").address("하남").build();
+        User user1 = User.builder().name("Lee").age(15).email("lukei321@naver.com").build();
+        User user2 = User.builder().name("Lee").age(15).email("lukei321@naver.com").build();
 
-        memberService.saveMember(member1);
-        memberService.saveMember(member2);
+        memberService.saveMember(user1);
+        memberService.saveMember(user2);
 
         assertThat(memberRepository.count()).isEqualTo(2);
     }

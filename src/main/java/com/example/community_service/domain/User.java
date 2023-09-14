@@ -2,35 +2,31 @@ package com.example.community_service.domain;
 
 import jakarta.persistence.*;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 
 import java.util.List;
 
 @Entity
 @Getter
-public class Member {
+@Table(name = "users")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Member_id")
     private Long id;
 
-    @Column(name = "Member_name", nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "Member_age", nullable = false)
+    @Column(nullable = false)
     private int age;
 
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
-    private String address;
-
-    @OneToMany(mappedBy = "postMember")
+    @OneToMany(mappedBy = "user")
     private List<Post> postList;
 
-    @OneToMany(mappedBy = "commentMember")
+    @OneToMany(mappedBy = "user")
     private List<Comment> commentList;
 
 //    @Column(nullable = false)
@@ -40,10 +36,9 @@ public class Member {
 //    private String login_password;
 
     @Builder
-    public Member(String name, int age, String email, String address) {
+    public User(String name, int age, String email) {
         this.name = name;
         this.age = age;
         this.email = email;
-        this.address = address;
     }
 }

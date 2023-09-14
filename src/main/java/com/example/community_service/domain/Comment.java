@@ -8,32 +8,29 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Table(name = "comments")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Comment_id")
-    private Long comment_id;
+    private Long id;
 
-    @Column(name = "Title", nullable = false)
-    private String comment_title;
+    @Column(nullable = false)
+    private String content;
 
-    @Column(name = "Content", nullable = false)
-    private String comment_content;
+    @Column(nullable = false)
+    private LocalDateTime created_at;
 
-    @Column(name = "CreatedAt", nullable = false)
-    private LocalDateTime comment_createdAt;
-
-    @Column(name = "UpdatedAt", nullable = false)
-    private LocalDateTime comment_updatedAt;
+    @Column(nullable = false)
+    private LocalDateTime updated_at;
 
     @ManyToOne
-    @JoinColumn(name = "User_id")
-    private Member commentMember;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Builder
-    public Comment(String comment_title, String comment_content, LocalDateTime comment_createdAt) {
-        this.comment_title = comment_title;
-        this.comment_content = comment_content;
-        this.comment_createdAt = comment_createdAt;
+    public Comment(String content, LocalDateTime created_at, LocalDateTime updated_at) {
+        this.content = content;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
     }
 }

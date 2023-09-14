@@ -1,6 +1,6 @@
 package com.example.community_service.service;
 
-import com.example.community_service.domain.Member;
+import com.example.community_service.domain.User;
 import com.example.community_service.repository.MemberRepository;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,34 +18,34 @@ public class MemberService {
     private MemberRepository memberRepository;
 
     // 사용자 정보 저장
-    public void saveMember(Member member) {
-        memberRepository.save(member);
+    public void saveMember(User user) {
+        memberRepository.save(user);
     }
 
     // 사용자 정보 조회
-    public Member findMemberById(Long id) { // 사용자 정보가 없을 경우 예외 터트림
-        Optional<Member> member = memberRepository.findById(id);
+    public User findMemberById(Long id) { // 사용자 정보가 없을 경우 예외 터트림
+        Optional<User> member = memberRepository.findById(id);
         return member.orElseThrow(() -> new IllegalArgumentException("Member Not Found"));
     }
 
-    public List<Member> findMembers() {
+    public List<User> findMembers() {
         return memberRepository.findAll().stream().toList();
     }
 
     // 사용자 정보 수정
-    public void updateMember(Member member) {
-        Member member1 = findMemberById(member.getId());
-
-        member1.builder()
-                .name(member.getName())
-                .age(member.getAge())
-                .email(member.getEmail())
-                .address(member.getAddress()).build();
-    }
+//    public void updateMember(User user) {
+//        User user1 = findMemberById(user.getId());
+//
+//        user1.builder()
+//                .name(user.getName())
+//                .age(user.getAge())
+//                .email(user.getEmail())
+//                .address(user.getAddress()).build();
+//    }
 
     // 사용자 정보 삭제
-    public void deleteMember(Member member) {
-        memberRepository.delete(member);
+    public void deleteMember(User user) {
+        memberRepository.delete(user);
     }
 
     public void deleteMemberById(Long id) {

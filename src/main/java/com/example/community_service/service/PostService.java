@@ -19,10 +19,10 @@ public class PostService {
 
     public void postSave(PostDto postDto) {
         Post post = Post.builder().
-                post_title(postDto.getTitle()).
-                post_content(postDto.getContent()).
-                post_createdAt(LocalDateTime.now()).
-                post_updatedAt(LocalDateTime.now()).
+                title(postDto.getTitle()).
+                content(postDto.getContent()).
+                created_at(LocalDateTime.now()).
+                updated_at(LocalDateTime.now()).
                 build();
         postRepository.save(post);
     }

@@ -10,33 +10,33 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor
+@Table(name = "posts")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Post_id")
     private Long id;
 
-    @Column(name = "Title", nullable = false)
-    private String post_title;
+    @Column(nullable = false)
+    private String title;
 
-    @Column(name = "Content", nullable = false)
-    private String post_content;
+    @Column(nullable = false)
+    private String content;
 
-    @Column(name = "CreatedAt", nullable = false)
-    private LocalDateTime post_createdAt;
+    @Column(nullable = false)
+    private LocalDateTime created_at;
 
-    @Column(name = "UpdatedAt", nullable = false)
-    private LocalDateTime post_updatedAt;
+    @Column(nullable = false)
+    private LocalDateTime updated_at;
 
     @ManyToOne
-    @JoinColumn(name = "User_id")
-    private Member postMember;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Builder
-    public Post(String post_title, String post_content, LocalDateTime post_createdAt, LocalDateTime post_updatedAt) {
-        this.post_title = post_title;
-        this.post_content = post_content;
-        this.post_createdAt = post_createdAt;
-        this.post_updatedAt = post_updatedAt;
+    public Post(String title, String content, LocalDateTime created_at, LocalDateTime updated_at) {
+        this.title = title;
+        this.content = content;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
     }
 }

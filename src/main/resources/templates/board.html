@@ -13,25 +13,25 @@
 </head>
 
 <body>
-<div class="container">
-  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-      <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-    </a>
+  <div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+      </a>
 
-    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-      <li><a href="/home" class="nav-link px-2 link-secondary">Home</a></li>
-      <li><a href="/home/board" class="nav-link px-2 link-dark">Board</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
-    </ul>
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="/home" class="nav-link px-2 link-secondary">Home</a></li>
+        <li><a href="/home/board" class="nav-link px-2 link-dark">Board</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+      </ul>
 
-    <div class="col-md-3 text-end">
-      <button type="button" class="btn btn-outline-primary me-2">Login</button>
-      <button type="button" class="btn btn-primary">Sign-up</button>
-    </div>
-  </header>
-</div>
+      <div class="col-md-3 text-end">
+        <button type="button" class="btn btn-outline-primary me-2">Login</button>
+        <button type="button" class="btn btn-primary">Sign-up</button>
+      </div>
+    </header>
+  </div>
 
   <header class="container">
     <h2 class="container-fluid">글 목록</h2>
@@ -42,6 +42,7 @@
       </div>
     </nav>
   </header>
+
   <div class="container my-3">
     <table border="1" class="table table-striped">
       <thead>
@@ -54,15 +55,29 @@
       </thead>
       <tbody>
         <tr th:each="post : ${postList}">
-          <td th:text="${post.post_title}"></td>
+          <td th:text="${post.title}"></td>
           <td>
-            <a th:text="${post.post_content}" th:href="@{/home}"></a>
+            <a th:text="${post.content}" th:href="@{/home}"></a>
           </td>
-          <td th:text="${post.post_createdAt}"></td>
-          <td th:text="${post.post_updatedAt}"></td>
+          <td th:text="${post.created_at}"></td>
+          <td th:text="${post.updated_at}"></td>
         </tr>
       </tbody>
     </table>
+
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        <li class="page-item" th:classappend="${!postList.hasPrevious} ? 'disabled'">
+          <a class="page-link" th:href="@{|?page=${postList.number-1}|}">Previous</a>
+        </li>
+        <li class="page-item" th:each="page : ${#numbers.sequence(0, postList.totalPages-1)}" th:classappend="${postList == postList.number} ? 'active'">
+          <a class="page-link" th:text="${page}" th:href="@{|?page=${page}}"></a>
+        </li>
+        <li class="page-item" th:classappend="${!postList.hasNext} ? 'disabled'">
+          <a class="page-link" th:href="@{|?page=${postList.number+1}|}">Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 
 <!--footer-->
