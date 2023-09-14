@@ -3,10 +3,12 @@ package com.example.community_service.controller;
 import com.example.community_service.domain.Post;
 import com.example.community_service.dto.PostDto;
 import com.example.community_service.service.PostService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -40,12 +42,20 @@ public class PostController {
 
     /**
      * submit post with dto
+     *
      * @param postDto
-     * @return
+     * @return redirect
      */
     @PostMapping("/board/post")
-    public String post(@ModelAttribute PostDto postDto) {
-        postService.postSave(postDto);
+    public String post(@Valid PostDto postDto, BindingResult result) {
+        if (result.hasErrors()) {
+            return "redirect:/home/board";
+        }
+
+        PostDto dto = new PostDto();
+        dto.setTitle(postDto.getTitle());
+        dto.setContent(postDto.getContent());
+        postService.createPost(dto);
         return "redirect:/home/board";
     }
 }

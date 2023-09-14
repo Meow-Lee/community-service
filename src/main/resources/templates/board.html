@@ -13,6 +13,7 @@
 </head>
 
 <body>
+  <!--header-->
   <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -55,9 +56,9 @@
       </thead>
       <tbody>
         <tr th:each="post : ${postList}">
-          <td th:text="${post.title}"></td>
+          <td th:text="${post.title}" th:href="@{/home}"></td>
           <td>
-            <a th:text="${post.content}" th:href="@{/home}"></a>
+            <a th:text="${post.content}"></a>
           </td>
           <td th:text="${post.created_at}"></td>
           <td th:text="${post.updated_at}"></td>
@@ -65,6 +66,7 @@
       </tbody>
     </table>
 
+    <!--paging-->
     <nav aria-label="Page navigation">
       <ul class="pagination">
         <li class="page-item" th:classappend="${!postList.hasPrevious} ? 'disabled'">
@@ -80,18 +82,17 @@
     </nav>
   </div>
 
-<!--footer-->
-<div class="container">
-  <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-    </ul>
-    <p class="text-center text-muted">© 2021 Company, Inc</p>
-  </footer>
-</div>
+  <!--footer-->
+  <div class="container">
+    <footer class="py-3 my-4">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Board</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+      </ul>
+      <p class="text-center text-muted">© Meow-Lee</p>
+    </footer>
+  </div>
 </body>
 </html>

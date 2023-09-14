@@ -32,8 +32,8 @@ class PostServiceTest {
         post2.setTitle("2");
         post2.setContent("hifadf");
 
-        postService.postSave(post1);
-        postService.postSave(post2);
+        postService.createPost(post1);
+        postService.createPost(post2);
 
         assertThat(postRepository.count()).isEqualTo(2);
     }

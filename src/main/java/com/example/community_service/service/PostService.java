@@ -17,7 +17,7 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    public void postSave(PostDto postDto) {
+    public void createPost(PostDto postDto) {
         Post post = Post.builder().
                 title(postDto.getTitle()).
                 content(postDto.getContent()).
