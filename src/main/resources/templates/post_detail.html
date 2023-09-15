@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head th:replace="~{layout :: head}">
+    <title>About the Post</title>
+</head>
+<body>
+    <!--header-->
+    <div th:replace="~{layout :: header}"></div>
+
+    <div class="container">
+        <p>
+            <a th:text="${post_detail.title}"></a>
+        </p>
+        <p>
+            <a th:text="${post_detail.content}"></a>
+        </p>
+    </div>
+
+    <!--footer-->
+    <div th:replace="~{layout :: footer}"></div>
+</body>
+</html>

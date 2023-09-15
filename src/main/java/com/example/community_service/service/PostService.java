@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostService {
@@ -32,7 +33,11 @@ public class PostService {
         return postRepository.findAll(pageable);
     }
 
-    public List<Post> getPosts() {
-        return postRepository.findAll();
+    public Post getPost(Long id) {
+        Optional<Post> post = postRepository.findById(id);
+        if (post.isEmpty()) {
+            post.orElseThrow(() -> new IllegalArgumentException("Post not found"));
+        }
+        return post.get();
     }
 }

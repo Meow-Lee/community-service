@@ -12,16 +12,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/home/board")
 public class PostController {
     @Autowired
     private PostService postService;
 
     /**
      * to the post lists
+     *
      * @return board
      */
-    @GetMapping("/board")
+    @GetMapping("")
     public String board(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
         Page<Post> paging = postService.getList(page);
         model.addAttribute("postList", paging);
@@ -30,11 +31,12 @@ public class PostController {
 
     /**
      * write post
+     *
      * @param model
      * @param postDto
      * @return post
      */
-    @GetMapping("/board/post")
+    @GetMapping("/post")
     public String write(Model model, PostDto postDto) {
         model.addAttribute("post", postDto);
         return "post";
@@ -46,7 +48,7 @@ public class PostController {
      * @param postDto
      * @return redirect
      */
-    @PostMapping("/board/post")
+    @PostMapping("/post")
     public String post(@Valid PostDto postDto, BindingResult result) {
         if (result.hasErrors()) {
             return "redirect:/home/board";
@@ -57,5 +59,11 @@ public class PostController {
         dto.setContent(postDto.getContent());
         postService.createPost(dto);
         return "redirect:/home/board";
+    }
+
+    @GetMapping("/post/detail/{id}")
+    public String postForm(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("post_detail", postService.getPost(id));
+        return "post_detail";
     }
 }
