@@ -13,7 +13,7 @@
     <nav class="navbar">
       <div class="container-fluid">
         <a class="nav-link" href="/home">메인으로</a>
-        <a class="nav-link" th:href="@{/home/board/post}">글 작성</a>
+        <a class="nav-link" th:href="@{/post/write}">글 작성</a>
       </div>
     </nav>
   </header>
@@ -30,10 +30,10 @@
       </thead>
       <tbody>
         <tr th:each="post : ${postList}">
-          <td th:text="${post.title}" th:href="@{|/post/detail/${post.id}|}"></td>
           <td>
-            <a th:text="${post.content}"></a>
+            <a th:text="${post.title}" th:href="@{|/post/detail/${post.id}|}"></a>
           </td>
+          <td th:text="${post.content}"></td>
           <td th:text="${post.created_at}"></td>
           <td th:text="${post.updated_at}"></td>
         </tr>
@@ -46,7 +46,7 @@
         <li class="page-item" th:classappend="${!postList.hasPrevious} ? 'disabled'">
           <a class="page-link" th:href="@{|?page=${postList.number-1}|}">Previous</a>
         </li>
-        <li class="page-item" th:each="page : ${#numbers.sequence(0, postList.totalPages-1)}" th:classappend="${postList == postList.number} ? 'active'">
+        <li class="page-item" th:each="page : ${#numbers.sequence(0, postList.totalPages)}" th:classappend="${postList == postList.number} ? 'active'">
           <a class="page-link" th:text="${page}" th:href="@{|?page=${page}}"></a>
         </li>
         <li class="page-item" th:classappend="${!postList.hasNext} ? 'disabled'">
@@ -57,16 +57,6 @@
   </div>
 
   <!--footer-->
-  <div class="container">
-    <footer class="py-3 my-4">
-      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Board</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-      </ul>
-      <p class="text-center text-muted">© Meow-Lee</p>
-    </footer>
-  </div>
+  <div th:replace="~{layout :: footer}"></div>
 </body>
 </html>

@@ -9,12 +9,17 @@
 
     <div class="container">
         <p>
-            <a th:text="${post_detail.title}"></a>
+            <a th:text="${post_detail.title}">질문</a>
         </p>
         <p>
-            <a th:text="${post_detail.content}"></a>
+            <a th:text="${post_detail.content}">내용</a>
         </p>
     </div>
+
+    <form th:action="@{|/comment/create/${post_detail.id}|}" method="post">
+        <textarea name="content" id="content" rows="15"></textarea>
+        <input type="submit" value="댓글">
+    </form>
 
     <!--footer-->
     <div th:replace="~{layout :: footer}"></div>

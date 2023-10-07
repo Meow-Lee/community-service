@@ -29,7 +29,7 @@ public class PostService {
     }
 
     public Page<Post> getList(int page) {
-        Pageable pageable = PageRequest.of(page, 2);
+        Pageable pageable = PageRequest.of(page, 10);
         return postRepository.findAll(pageable);
     }
 
