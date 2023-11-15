@@ -34,8 +34,8 @@
             <a th:text="${post.title}" th:href="@{|/post/detail/${post.id}|}"></a>
           </td>
           <td th:text="${post.content}"></td>
-          <td th:text="${post.created_at}"></td>
-          <td th:text="${post.updated_at}"></td>
+          <td th:text="${#temporals.format(post.created_at, 'yyyy-MM-dd HH:mm')}"></td>
+          <td th:text="${#temporals.format(post.updated_at, 'yyyy-MM-dd HH:mm')}"></td>
         </tr>
       </tbody>
     </table>
@@ -46,7 +46,7 @@
         <li class="page-item" th:classappend="${!postList.hasPrevious} ? 'disabled'">
           <a class="page-link" th:href="@{|?page=${postList.number-1}|}">Previous</a>
         </li>
-        <li class="page-item" th:each="page : ${#numbers.sequence(0, postList.totalPages)}" th:classappend="${postList == postList.number} ? 'active'">
+        <li class="page-item" th:each="page : ${#numbers.sequence(1, postList.totalPages-1)}" th:classappend="${postList == postList.number} ? 'active'">
           <a class="page-link" th:text="${page}" th:href="@{|?page=${page}}"></a>
         </li>
         <li class="page-item" th:classappend="${!postList.hasNext} ? 'disabled'">
